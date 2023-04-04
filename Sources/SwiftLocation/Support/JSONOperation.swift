@@ -38,6 +38,7 @@ public class JSONOperation {
     ///   - cachePolicy: cache policy, if not specified `reloadIgnoringLocalAndRemoteCacheData`.
     public init(_ url: URL, timeout: TimeInterval?, cachePolicy: NSURLRequest.CachePolicy? = nil) {
         self.request = URLRequest(url: url, cachePolicy: (cachePolicy ?? .reloadIgnoringLocalAndRemoteCacheData), timeoutInterval: timeout ?? 10.0)
+        self.request.setValue(Bundle.main.bundleIdentifier, forHTTPHeaderField: "X-Ios-Bundle-Identifier")
     }
     
     /// Start a request. Any pending request from the same class will be discarded.
